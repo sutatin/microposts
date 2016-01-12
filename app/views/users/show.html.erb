@@ -3,10 +3,15 @@
   <%= @user.name %>
 </h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <p><%= @user.email %></p>
-    <p><%= @user.region %></p>
+<%# 本当はcolのサイズも調整してレスポンシブにすべき。ただ時間の都合上省略 %>
+<div class="panel panel-info">
+  <div class="col-md-6 col-md-offset-3 panel-heading">
+    <p><%= @user.name %>のプロフィール</p>
+  </div>
+  <div class="col-md-6 col-md-offset-3 panel-body">
+    <p>アドレス：　<%= @user.email %></p>
+    <p>地域：　<%= @user.region %></p>
+    <p>一言プロフィール：　<%= @user.profile %></p>
   </div>
 </div>
 
