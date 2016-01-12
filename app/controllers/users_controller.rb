@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update]
+
   def new
     @user = User.new
   end
   
   def show
-    @user = User.find(params[:id])
+    ##before_actionがあるから読み込みはしている。
   end
   
   def create
@@ -18,24 +20,19 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
     ##before_actionがあるから読み込みはしている。
     render "edit"
   end
 
   def update
-      ##なぜこの2行で引数の数が異なるのか…。
-      ##→インスタンス変数@userとUserの違いかも
-      @user = User.update(params[:id],user_params)
-      if @user.update(user_params)
-        flash[:success] = "プロフィールを更新しました"
-        redirect_to @user
-      else
-        render "show"
-      end
+    if @user.update(user_params)
+      flash[:success] = "プロフィールを更新しました"
+      redirect_to @user
+    else
+      render "show"
+    end
   end
 
-  
   private
   def user_params
     params.require(:user).permit(:name,:email,:region,:password,:password_confirmation)
