@@ -4,18 +4,18 @@
       <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name ,class: 'form-control'%>
 
       <%= f.label :email %>
-      <%= f.text_field :email %>
+      <%= f.text_field :email ,class: 'form-control'%>
 
       <%# 本来ならselect要素とかにしたい。時間ないので省略 %>
       <%= f.label :region %>
-      <%= f.text_field :region %>
+      <%= f.text_field :region ,class: 'form-control'%>
 
       <%# 本来ならテキストエリア要素とかにしたい。時間ないので省略 %>
       <%= f.label :profile %>
-      <%= f.text_field :profile %>
+      <%= f.text_field :profile ,class: 'form-control'%>
 
       <%# 本来ならパスワードは動きが別なので別画面にしたい。でも時間ないので省略… %>
       <%# そもそも何でpasswordは空でもpostした時に受け付けられているかは謎 %>

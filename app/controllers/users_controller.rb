@@ -21,14 +21,26 @@ class UsersController < ApplicationController
   
   def edit
     ##before_actionがあるから読み込みはしている。
-    render "edit"
+    if is_my_user
+        render "edit"
+      else
+        ##自分のアカウントでは無いとき
+        render "show"
+    end
   end
 
   def update
-    if @user.update(user_params)
-      flash[:success] = "プロフィールを更新しました"
-      redirect_to @user
+    ##before_actionがあるから読み込みはしている。
+
+    if is_my_user
+      if @user.update(user_params)
+        flash[:success] = "プロフィールを更新しました"
+        redirect_to @user
+      else
+        render "edit"
+      end
     else
+      ##自分のアカウントでは無いとき
       render "show"
     end
   end
@@ -42,4 +54,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
+  def is_my_user
+    ##set_userはbeforeでされているのでUser.findは不要
+    @user==current_user
+  end
+
 end
