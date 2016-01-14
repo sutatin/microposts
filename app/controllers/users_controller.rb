@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   
   def show
     ##before_actionがあるから読み込みはしている。
+    @microposts = @user.microposts.order(created_at: :desc)
   end
   
   def create

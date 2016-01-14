@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   #root
-  root to: 'static_page#home'
+  root to: 'static_pages#home'
   
   #signup
   get "signup", to: "users#new"
@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
   #session
   resources :sessions, only: [:new,:create,:destroy]
+  
+  #micropost
+  resources :microposts
 
 end
 
