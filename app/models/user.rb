@@ -12,4 +12,33 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   has_many :microposts
+  
+  # TODO: カリキュラム8.1　foreign_key: trueを指定することで、外部キー制約を設定して、usersテーブルに存在するidのみuser_idに入るようにしています。
+  # TODO: カリキュラム9.2　あまり理解できていないので後で理解
+  has_many :following_relationships, class_name: "Relationship",
+                                    foreign_key: "follower_id",
+                                    dependent: :destroy
+  has_many :following_users, through: :following_relationships, source: :follower
+  
+  has_many :follower_relationships, class_name:"Relationship",
+                                    foreign_key:"followed_id",
+                                    dependent: :destroy
+  has_many :follower_users, through: :follower_relationships, source: :follower
+  
+
+  # 他のユーザーをフォローする
+  def follow(other_user)
+    following_relationships.find_or_create_by(followed_id: other_user.id)
+  end
+
+  # フォローしているユーザーをアンフォローする
+  def unfollow(other_user)
+    following_relationship = following_relationships.find_by(followed_id: other_user.id)
+    following_relationship.destroy if following_relationship
+  end
+
+  # あるユーザーをフォローしているかどうか？
+  def following?(other_user)
+    following_users.include?(other_user)
+  end
 end
