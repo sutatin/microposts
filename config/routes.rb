@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   
   #relationships
   resources :relationships, only: [:create, :destroy]
-
+  
+  #show_follower
+  get "users/:id/follower", to: "users#follower"
 end
 

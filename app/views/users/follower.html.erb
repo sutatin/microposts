@@ -4,17 +4,16 @@
       <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
-        <span><%= path_follower(current_user.id) %></span>
       </h1>
     </section>
   </aside>
   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
-    <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
+    <% if @user.following_users.any? %>
+      <h3>Follower (<%= @user.follower_users.count %>)</h3>
+      <ol class="follow_users">
         <%# TODO: カリキュラム8.5　ループ処理は↓ここでしている %>
-        <%= render @microposts %>
+        <%# この書き方→だとmodelが無いからエラーとなる。 <%= render @followers %>
+        <%= render partial: 'followers/follower', collection: @followers %>
       </ol>
     <% end %>
   </div>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update,:follower]
 
   def new
     @user = User.new
@@ -46,6 +46,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def follower
+    ##binding.pry
+    @followers = @user.follower_users
+  end
+
+
   private
   def user_params
     params.require(:user).permit(:name,:email,:region,:profile,:password,:password_confirmation)
@@ -59,5 +65,7 @@ class UsersController < ApplicationController
     ##set_userはbeforeでされているのでUser.findは不要
     @user==current_user
   end
+  
+  
 
 end

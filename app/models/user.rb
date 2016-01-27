@@ -15,16 +15,16 @@ class User < ActiveRecord::Base
   
   # TODO: カリキュラム8.1　foreign_key: trueを指定することで、外部キー制約を設定して、usersテーブルに存在するidのみuser_idに入るようにしています。
   # TODO: カリキュラム9.2　あまり理解できていないので後で理解
-  has_many :following_relationships, class_name: "Relationship",
-                                    foreign_key: "follower_id",
-                                    dependent: :destroy
-  has_many :following_users, through: :following_relationships, source: :follower
+  has_many :following_relationships, class_name:  "Relationship",
+                                     foreign_key: "follower_id",
+                                     dependent:   :destroy
+  has_many :following_users, through: :following_relationships, source: :followed
   
-  has_many :follower_relationships, class_name:"Relationship",
-                                    foreign_key:"followed_id",
-                                    dependent: :destroy
-  has_many :follower_users, through: :follower_relationships, source: :follower
   
+  has_many :follower_relationships, class_name:  "Relationship",
+                                    foreign_key: "followed_id",
+                                    dependent:   :destroy
+  has_many :follower_users, through: :follower_relationships, source: :follower  
 
   # 他のユーザーをフォローする
   def follow(other_user)
