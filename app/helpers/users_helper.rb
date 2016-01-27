@@ -7,8 +7,15 @@ module UsersHelper
   end
   
   def path_follower(id)
-    link_to "Followers List", 
+    link_to "Followers List(フォローしてくれている人)", 
     { controller: :users, action: :follower, id: id},
     { :id => "link_id", :class => "link_class"}
   end
+
+  def path_followed(id)
+    link_to "Followeds List（フォローしている人）", 
+    { controller: :users, action: :followed, id: id},
+    { id: "link_id", class: "link_class"}
+  end
+
 end

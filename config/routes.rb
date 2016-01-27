@@ -24,5 +24,9 @@ Rails.application.routes.draw do
   
   #show_follower
   get "users/:id/follower", to: "users#follower"
+
+  #show_followed
+  get "users/:id/followed", to: "users#followed"
+
 end
 

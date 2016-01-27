@@ -8,7 +8,7 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <% if @user.following_users.any? %>
+    <% if @user.follower_users.any? %>
       <h3>Follower (<%= @user.follower_users.count %>)</h3>
       <ol class="follow_users">
         <%# TODO: カリキュラム8.5　ループ処理は↓ここでしている %>
