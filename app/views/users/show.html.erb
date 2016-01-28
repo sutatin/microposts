@@ -4,8 +4,8 @@
       <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
-        <span><%= path_follower(current_user.id) %></span>
-        <span><%= path_followed(current_user.id) %></span>
+        <span><%= path_follower(@user.id) %></span>
+        <span><%= path_followed(@user.id) %></span>
       </h1>
     </section>
   </aside>
