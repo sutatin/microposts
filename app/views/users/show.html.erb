@@ -16,6 +16,7 @@
       <ol class="microposts">
         <%# TODO: カリキュラム8.5　ループ処理は↓ここでしている %>
         <%= render @microposts %>
+        <%= paginate(@microposts) %>
       </ol>
     <% end %>
   </div>
