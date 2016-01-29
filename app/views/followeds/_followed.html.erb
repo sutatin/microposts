@@ -2,9 +2,9 @@
   <%= link_to gravatar_for(followed, size: 50), followed %>
   <span class="user"><%= link_to followed.name, followed %></span>
   <br>
-  <span><%= path_follower(followed.id) %></span>
+  <span><%= path_follower(followed) %></span>
   <br>
-  <span><%= path_followed(followed.id) %></span>
+  <span><%= path_followed(followed) %></span>
   <br>
   <span><%= pluralize(followed.microposts.count, "micropost") %></span>
 </li>

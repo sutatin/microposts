@@ -6,15 +6,16 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
   
-  def path_follower(id)
-    link_to "Followers List(フォローしてくれている人)", 
-    { controller: :users, action: :follower, id: id},
+  def path_follower(user)
+    # TODO: フォロワー数をuserから取得して表示
+    link_to "Follower　：" + user.follower_users.count.to_s, 
+    { controller: :users, action: :follower, id: user.id},
     { :id => "link_id", :class => "link_class"}
   end
 
-  def path_followed(id)
-    link_to "Followeds List（フォローしている人）", 
-    { controller: :users, action: :followed, id: id},
+  def path_followed(user)
+    link_to "Follow　：" + user.following_users.count.to_s, 
+    { controller: :users, action: :followed, id: user.id},
     { id: "link_id", class: "link_class"}
   end
 

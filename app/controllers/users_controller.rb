@@ -7,8 +7,9 @@ class UsersController < ApplicationController
   
   def show
     ##before_actionがあるから読み込みはしている。
+    # TODO: ここが何故か全員分のmicropostを読み込んでいるので修正
     @microposts = @user.microposts.order(created_at: :desc)
-    @microposts = Micropost.page(params[:page]).per(4).order('id DESC')
+    @microposts = Micropost.page(params[:page]).per(5).order('id DESC')
   end
   
   def create
